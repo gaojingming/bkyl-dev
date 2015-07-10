@@ -16,4 +16,7 @@ return array(
 	'TMPL_PARSE_STRING' => array(
 		'__PUBLIC__' => __ROOT__.'/Admin/Public',
 	),
+
+	// CRYPT SALT
+	'CRYPT_SALT' => '_D5/.XbXy',
 );
