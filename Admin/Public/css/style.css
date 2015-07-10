@@ -1,2 +1,4 @@
 .max-wd-300 td{max-width:300px}
 .unavailable{cursor:not-allowed}
+.login-page{background:url('../images/login_bg.jpg') center no-repeat;background-color:#444}
+.login-logo a{color:#fefefe;font-size:40px}
