@@ -1,0 +1,4 @@
+/Admin/Runtime/*
+/Admin/Home/Conf/config.php
+/Web/Runtime/*
+/Web/Home/Conf/config.php
