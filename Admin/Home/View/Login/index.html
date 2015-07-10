@@ -84,6 +84,8 @@
         }
 
         $('button[type=submit]').click(function() {
+          $('#password').removeClass('has-error');
+          $('.form-group:contains("用户名或密码错误")').css('display', 'none');
           $.ajax({
             type: 'POST',
             dataType: 'json',
