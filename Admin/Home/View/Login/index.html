@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-cn ">
+<head>
+  <meta charset="UTF-8">
+  <title>北科亿联中医研究院后台管理</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <style type="text/css">
+    html {
+      background-color: #222222;
+      color: #f9f9f9;
+    }
+    body {
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100%;
+    }
+    .form-box {
+      width: 360px;
+      margin: 90px auto 0 auto;
+    }
+    .form-box .header {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      background: #3d9970;
+      box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.2);
+      padding: 25px 10px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 300;
+      color: #fff;
+    }
+    form {
+      display: block;
+      margin-top: 0em;
+    }
+    .form-box .body, .form-box .footer {
+      padding: 10px 20px;
+      background: #eaeaec;
+      color: #444;
+    }
+    .form-box .body > .form-group, form-box .footer > .form-group {
+      margin-top: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-box .body > .form-group > input, .form-box .footer > .form-group > input {
+      border: #fff;
+    }
+    .form-control {
+      display: block;
+      width: 100%;
+      height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.428571429;
+      color: #555;
+      vertical-align: middle;
+      background-color: #fff;
+      background-image: none;
+      margin: 0;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+    .form-box .footer {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      -webkit-border-top-left-radius: 0;
+      -webkit-border-top-right-radius: 0;
+      -webkit-border-bottom-left-radius: 4px;
+      -webkit-border-bottom-right-radius: 4px;
+      -moz-border-top-left-radius: 0;
+      -moz-border-top-right-radius: 0;
+      -moz-border-bottom-left-radius: 4px;
+      -moz-border-bottom-right-radius: 4px;
+      padding: 10px 20px;
+      background: #fff;
+      color: #444;
+    }
+    *, *:before, *:after {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+    .btn {
+      font-weight: 500;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border: 1px solid transparent;
+      box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+      -webkit-box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+      -moz-box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.428571429;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    .bg-olive {
+      background-color: #3d9970;
+      color: #f9f9f9;
+    }
+    .btn-block {
+      display: block;
+      width: 100%;
+      padding-right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box" id="login-box">
+    <div class="header">北科亿联中医研究院</div>
+    <div id="login-form" method="post" action="{:U('Home/Login/check_user')}">
+      <form class="body bg-gray">
+        <div class="form-group">
+          <input class="form-control" id="id_username" name="username" placeholder="邮箱" type="text">
+        </div>
+        <div class="form-group">
+          <input class="form-control" id="id_password" name="password" placeholder="密码" type="password">
+        </div>
+      </form>
+      <div class="footer">
+        <button id="login-btn" class="btn bg-olive btn-block">登录</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript">
+    $('#login-btn').click(function(){
+      $.ajax({
+        type: 'POST',
+        url: "{:U('Home/Login/check_user')}",
+        data: {
+          username: $('#id_username').val(),
+          password: $('#id_password').val()
+        },
+        success: function(data) {
+          if (data == 'ok') {
+            window.location.href = "{:U('Home/Dashboard/index')}";
+          } else {
+            if ($('#login-form .body span').length == 0) {
+              $('#login-form .body').append('<div><span style="color:#f94141;">用户名或密码错误</span></div>');
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

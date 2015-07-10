@@ -8,4 +8,12 @@ return array(
 
 	// 伪静态
 	'URL_HTML_SUFFIX' => '',
+
+	// 默认控制器
+	'DEFAULT_CONTROLLER' => 'Login',
+
+	// 后台PUBLIC文件夹地址
+	'TMPL_PARSE_STRING' => array(
+		'__PUBLIC__' => __ROOT__.'/Admin/Public',
+	),
 );
