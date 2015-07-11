@@ -6,6 +6,12 @@ use Think\Controller;
  * 登录相关功能控制器
  */
 class LoginController extends Controller {
+	/**
+	 * 验证用户名密码是否正确
+	 * @param  string $username 用户名
+	 * @param  string $password 密码（未加密）
+	 * @return boolean 正确/错误
+	 */
 	private function _validate($username, $password) {
 		$user_info = M('admin_info')->where(array('email'=>$username))->field('password')->select();
 
@@ -29,6 +35,9 @@ class LoginController extends Controller {
 		$this->display();
 	}
 
+	/**
+	 * AJAX提交检查用户名密码是否正确地址
+	 */
 	public function check_user() {
 		$username = I('post.username');
 		$password = I('post.password');
