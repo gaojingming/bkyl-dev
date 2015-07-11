@@ -37,6 +37,7 @@ class LoginController extends Controller {
 	private function _get_ip_location($ip) {
 		$url = "http://ip.taobao.com/service/getIpInfo2.php";
 		$post_data = array('ip' => $ip);
+		$location = '';
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -47,7 +48,13 @@ class LoginController extends Controller {
 		$output = curl_exec($ch);
 		$ip_info = json_decode($output)->data;
 
-		return $ip_info->country . $ip_info->region . $ip_info->city . $ip_info->county . ' ' . $ip_info->isp;
+		$location = $ip_info->country . $ip_info->region;
+		if ($ip_info->region != $ip_info->city) {
+			$location .= $ip_info->city;
+		}
+		$location .= $ip_info->county . ' ' . $ip_info->isp;
+
+		return $location;
 	}
 
 	/**
