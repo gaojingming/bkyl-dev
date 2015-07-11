@@ -105,7 +105,7 @@
             },
             success: function(data) {
               if (data == 'success') {
-                window.location.href = "{:U('Index/index')}";
+                window.location.href = "{:U('Dashboard/index')}";
               } else {
                 $('.form-group:contains("用户名或密码错误")').css('display', 'block');
                 $('#password').parent().addClass('has-error');

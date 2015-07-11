@@ -1,0 +1,260 @@
+<extend name="Public:base" />
+
+<block name="content">
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1 class="font-yh">
+            首页
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- info boxes -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">昨日访问量</span>
+                  <span class="info-box-number">10000</span>
+                </div>
+                <!-- /content -->
+              </div>
+              <!-- /info-box -->
+            </div>
+            <!-- /col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">今日访问量</span>
+                  <span class="info-box-number">2000</span>
+                </div>
+                <!-- /content -->
+              </div>
+              <!-- /info-box -->
+            </div>
+            <!-- /col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">总访问量</span>
+                  <span class="info-box-number">19000</span>
+                </div>
+                <!-- /content -->
+              </div>
+              <!-- /info-box -->
+            </div>
+            <!-- /col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-user-plus"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">总会员数</span>
+                  <span class="info-box-number">10000</span>
+                </div>
+                <!-- /content -->
+              </div>
+              <!-- /info-box -->
+            </div>
+            <!-- /col -->
+
+            <!-- line chart -->
+            <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title font-yh">日访问量统计</h3>
+                </div>
+                <div class="box-body">
+                  <div class="chart" style="height:300px">
+                    <canvas id="lineChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /col -->
+            
+            <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title font-yh">近一周修改文章列表</h3>
+                </div>
+                <div class="box-body table-responsive no-padding">
+<table class="table table-hover max-wd-300">
+  <tbody>
+    <tr>
+      <th>编号</th>
+      <th>栏目</th>
+      <th>文章标题</th>
+      <th>修改日期</th>
+      <th>管理员</th>
+      <th>操作</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>公司新闻</td>
+      <td>北科亿联为乡村诊所开通沟通交流平台</td>
+      <td>2015-07-02 12:03:03</td>
+      <td>gaojingm@hotmail.com</td>
+      <td><a href="#">[修改]</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>公司新闻</td>
+      <td>北科亿联为乡村诊所开通沟通交流平台</td>
+      <td>2015-07-02 12:03:03</td>
+      <td>gaojingm@hotmail.com</td>
+      <td><a href="#">[修改]</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>公司新闻</td>
+      <td>北科亿联为乡村诊所开通沟通交流平台</td>
+      <td>2015-07-02 12:03:03</td>
+      <td>gaojingm@hotmail.com</td>
+      <td><a href="#">[修改]</a></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>公司新闻</td>
+      <td>北科亿联为乡村诊所开通沟通交流平台</td>
+      <td>2015-07-02 12:03:03</td>
+      <td>gaojingm@hotmail.com</td>
+      <td><span class="unavailable">[修改]</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>公司新闻</td>
+      <td>北科亿联为乡村诊所开通沟通交流平台</td>
+      <td>2015-07-02 12:03:03</td>
+      <td>gaojingm@hotmail.com</td>
+      <td><a href="#">[修改]</a></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>公司新闻</td>
+      <td>北科亿联为乡村诊所开通沟通交流平台</td>
+      <td>2015-07-02 12:03:03</td>
+      <td>gaojingm@hotmail.com</td>
+      <td><span class="unavailable">[修改]</span></td>
+    </tr>
+  </tbody>
+</table>
+                </div>
+              </div>
+            </div>
+            <!-- /col -->
+
+            <!-- admin login info -->
+            <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title font-yh">近期管理员登录记录</h3>
+                </div>
+                <div class="box-body table-responsive no-padding">
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>编号</th>
+      <th>管理员用户名</th>
+      <th>权限</th>
+      <th>IP地址</th>
+      <th>地理位置</th>
+      <th>登录时间</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>gaojingm@hotmail.com</td>
+      <td>超级管理员</td>
+      <td>58.129.21.123</td>
+      <td>中国湖北省武汉市</td>
+      <td>2015-07-08 21:47:12</td>
+    </tr>
+  </tbody>
+</table>
+                </div>
+              </div>
+            </div>
+            <!-- /col -->
+          </div>
+          <!-- /row -->
+        </section><!-- /.content -->
+
+      </div><!-- /.content-wrapper -->
+</block>

@@ -28,6 +28,11 @@ class LoginController extends Controller {
 			return false;
 		}
 	}
+	
+	private function _get_ip_location($ip) {
+		$url = 'http://ip.qq.com/cgi-bin/searchip?searchip1='.$ip;
+	}
+
 	/**
 	 * 显示登录页面
 	 */
@@ -48,11 +53,21 @@ class LoginController extends Controller {
 
 			session('admin_id', $user_info['id']);
 			session('admin_username', $username);
+			session('admin_ip', get_client_ip());
+			session('location', $this->_get_ip_location(get_client_ip()));
 			session('admin_permission', $user_info['permission']);
 			header_json_message(200, 'success');
 		} else {
 			header_json_message(200, 'failed');
 			return;
 		}
+	}
+
+	/**
+	 * 退出登录
+	 */
+	public function logout() {
+		session(null);
+		$this->redirect('Login/index');
 	}
 }

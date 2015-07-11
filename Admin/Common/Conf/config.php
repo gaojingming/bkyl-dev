@@ -10,7 +10,7 @@ return array(
 	'URL_HTML_SUFFIX' => '',
 
 	// 默认控制器
-	'DEFAULT_CONTROLLER' => 'Login',
+	'DEFAULT_CONTROLLER' => 'Dashboard',
 
 	// 后台PUBLIC文件夹地址
 	'TMPL_PARSE_STRING' => array(
