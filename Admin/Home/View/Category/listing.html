@@ -15,20 +15,177 @@
           <!-- info boxes -->
           <div class="row">
 
-            <!-- line chart -->
+            <div class="col-xs-12">
+              <form class="modal fade" id="update_cate_modal">
+                <input type="hidden" name="category_id">
+                <div class="modal-dialog" style="margin-top:10%; width:450px">
+                  <div class="box box-warning">
+                    <div class="box-header with-border">
+                      <h3 class="box-title font-yh">修改栏目信息</h3>
+                      <div class="box-tools pull-right">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label>栏目名称：</label>
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-list-ul"></i>
+                          </div>
+                          <input type="text" class="form-control pull-right" name="cate_name">
+                        </div>
+                      </div>
+                      <!-- /form-group -->
+                      <div class="form-group">
+                        <label>排序数值：</label>
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-sort-numeric-asc"></i>
+                          </div>
+                          <input type="text" class="form-control pull-right" name="order_id">
+                        </div>
+                      </div>
+                      <!-- /form-group -->
+                    </div>
+                    <!-- /box-body -->
+                    <div class="box-footer">
+                      <div class="row">
+                        <div class="col-xs-12 text-right">
+                          <button type="submit" class="btn btn-primary">保存</button>
+                          <button class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /box-footer -->
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-xs-12">
+              <form class="modal fade" id="del_cate_modal">
+                <input type="hidden" name="category_id">
+                  <div class="modal-dialog" style="width:450px; margin-top:13%">
+                    <div class="box box-danger">
+                      <div class="box-header with-border">
+                        <h3 class="box-title font-yh">删除栏目</h3>
+                        <div class="box-tools pull-right">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                      </div>
+                      <!-- /box-header -->
+                      <div class="box-body">
+                        <div class="row">
+                          <div class="col-xs-12" id="message">
+                            确定要删除栏目：<b id="cate_name">公司新闻</b>&nbsp;&nbsp;吗？
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /box-body -->
+                      <div class="box-footer">
+                        <div class="row">
+                          <div class="col-xs-12 text-right">
+                            <span id="error-message" class="text-red">删除失败：当前栏目内还有未删除的文章！</span>&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-danger">确定</button>
+                            <button class="btn btn-default" data-dismiss="modal">取消</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+            </div>
+
+            <!-- 栏目列表 -->
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title font-yh">栏目列表</h3>
                 </div>
-                <div class="box-body table-responsive no-padding">
-<table class="table table-hover">
+                <div class="box-body">
+<table class="table table-bordered">
   <tbody>
     <tr>
-      <th>排序数值</th>
+      <th class="hide">编号</th>
+      <th style="width:80px">排序数值</th>
       <th>栏目名称</th>
       <th>下属文章数量</th>
       <th>操作</th>
+    </tr>
+    <tr>
+      <td class="hide">1</td>
+      <td>1</td>
+      <td>公司新闻</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="hide">2</td>
+      <td>2</td>
+      <td>产品展示</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="hide">3</td>
+      <td>3</td>
+      <td>中医技术</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="hide">4</td>
+      <td>4</td>
+      <td>专家授课</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="hide">5</td>
+      <td>5</td>
+      <td>诊所交流</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="hide">6</td>
+      <td>6</td>
+      <td>救助基金</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="hide">7</td>
+      <td>7</td>
+      <td>科普知识</td>
+      <td>12</td>
+      <td>
+        <a class="cate_update" href="#" data-toggle="modal" data-target="#update_cate_modal">[修改]</a>&nbsp;&nbsp;
+        <a class="cate_del" href="#" data-toggle="modal" data-target="#del_cate_modal">[删除]</a>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -45,4 +202,23 @@
 </block>
 
 <block name="loadjs">
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.cate_update[data-toggle=modal]').click(function() {
+      var category_id = $(this).parent().siblings('td:first').text();
+      var cate_name = $(this).parent().siblings('td:eq(2)').text();
+      var order_id = $(this).parent().siblings('td:eq(1)').text();
+      $('#update_cate_modal input[name=category_id]').val(category_id);
+      $('#update_cate_modal input[name=cate_name]').val(cate_name);
+      $('#update_cate_modal input[name=order_id]').val(order_id);
+    });
+
+    $('.cate_del[data-toggle=modal').click(function() {
+      $('#del_cate_modal #error-message').css('display', 'none');
+      var category_id = $(this).parent().siblings('td:first').text();
+      var cate_name = $(this).parent().siblings('td:eq(2)').text();
+      $('#del_cate_modal #cate_name').text(cate_name);
+    });
+  });
+</script>
 </block>
