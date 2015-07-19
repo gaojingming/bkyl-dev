@@ -133,6 +133,10 @@ class CKFinder_Connector_CommandHandler_FileUpload extends CKFinder_Connector_Co
 
         while (true)
         {
+            $sFileName =  date('YmdHis').rand(100000,999999).'.'.$sExtension;
+            $oRegistry->set("FileUpload_fileName", $sFileName);
+
+            // 下面部分没用
             $sFilePath = CKFinder_Connector_Utils_FileSystem::combinePaths($sServerDir, $sFileName);
 
             if (file_exists($sFilePath)) {

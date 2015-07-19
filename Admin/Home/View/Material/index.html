@@ -53,9 +53,23 @@
 		this.openMsgDialog( "Selected file", msg );
 	}
 
+	// CKFinder.customConfig = function( config )
+	// {
+	// 	config.startupPath = "Files:/gaojingm_hotmail_com/";
+	// }
 
 	// You can use the "CKFinder" class to render CKFinder in a page:
-	var finder = new CKFinder();
+	if ("{$permission}" == "SUPER_ADMIN") {
+		var path = "{$admin_username}";
+		path = path.replace("@", "_");
+		path = path.replace(".", "_");
+
+		var finder = new CKFinder({
+			startupPath : "Files:/" + path + "/images/"
+		});
+	} else {
+		var finder = new CKFinder();
+	}
 	// The path for the installation of CKFinder (default = "/ckfinder/").
 	finder.basePath = '__ROOT__/ckfinder/';
 	// The default height is 400.

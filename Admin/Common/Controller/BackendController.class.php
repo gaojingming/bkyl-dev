@@ -11,5 +11,6 @@ class BackendController extends Controller {
 		$this->assign('admin_username', session('admin_username'));
 		$this->assign('admin_ip', session('admin_ip'));
 		$this->assign('location', session('location'));
+		$this->assign('permission', session('admin_permission'));
 	}
 }
