@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>北科亿联中医研究院后台管理系统</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="robots" content="noindex, nofollow">
+
+    <block name="meta"></block>
+
     <link rel="shortcut icon" type="image/x-icon" href="images/logo_16_16.png" media="screen" />
     <!-- Bootstrap 3.3.4 -->
     <link href="http://libs.baidu.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
@@ -116,6 +120,8 @@
               </ul>
             </li>
 
+            <li><a href="{:U('Material/index')}"><i class="fa fa-inbox"></i> <span>素材管理</span></a></li>
+
             <li class="treeview">
               <a href="#"><i class="fa fa-users"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -140,6 +146,8 @@
     <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
     <!-- Bootstrap 3.3.4 JS -->
     <script src="http://libs.baidu.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Slim scroll -->
+    <script type="text/javascript" src="__PUBLIC__/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script>
       var AdminLTEOptions = {
         //BoxRefresh Plugin
