@@ -18,4 +18,12 @@ class CategoryController extends BackendController {
 		$this->display();
 	}
 
+	/**
+	 * AJAX方式获取栏目列表
+	 */
+	public function get_category() {
+		$category_info = M('category')->order('order_id')->select();
+		header_json_message(200, $category_info);
+	}
+
 }
