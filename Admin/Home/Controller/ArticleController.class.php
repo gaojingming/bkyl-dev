@@ -26,6 +26,10 @@ class ArticleController extends BackendController {
 		$this->display();
 	}
 
+	public function add() {
+		$this->display();
+	}
+
 	public function get_article_list() {
 		$format = I('param.format');
 		$category_id = I('param.category_id');

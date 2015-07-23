@@ -4,7 +4,7 @@ return array(
 	'MULTI_MODULE' => false,
 
 	// URL模式
-	'URL_MODEL' => 1,
+	'URL_MODEL' => 0,
 
 	// 伪静态
 	'URL_HTML_SUFFIX' => '',
