@@ -2,7 +2,16 @@
 namespace Home\Controller;
 use Common\Controller\BackendController;
 
+/**
+ * 文章相关操作控制器
+ */
 class ArticleController extends BackendController {
+	/**
+	 * 返回datatables插件指定格式的数据
+	 * @param  array $data  需要改变结构的数据
+	 * @param  array $order 更改结构后的顺序
+	 * @return array        更改结构后的数据
+	 */
 	private function datatables_ajax_encode($data, $order) {
 		$arr = array(
 			'data' => array()
@@ -18,18 +27,31 @@ class ArticleController extends BackendController {
 		return $arr;
 	}
 
+	/**
+	 * 默认重定向显示listing页面
+	 */
 	public function index() {
 		$this->redirect('Article/listing');
 	}
 
+	/**
+	 * 文章列表页面
+	 */
 	public function listing() {
 		$this->display();
 	}
 
+	/**
+	 * 添加文章页面
+	 */
 	public function add() {
 		$this->display();
 	}
 
+	/**
+	 * 获取文章列表AJAX访问地址
+	 * @return json_string 文章列表
+	 */
 	public function get_article_list() {
 		$format = I('param.format');
 		$category_id = I('param.category_id');
