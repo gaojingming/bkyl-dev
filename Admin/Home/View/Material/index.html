@@ -59,19 +59,22 @@
 	// }
 
 	// You can use the "CKFinder" class to render CKFinder in a page:
-	if ("{$permission}" == "SUPER_ADMIN") {
-		var path = "{$admin_username}";
-		path = path.replace("@", "_");
-		path = path.replace(".", "_");
+	// if ("{$permission}" == "SUPER_ADMIN") {
+	// 	var path = "{$admin_username}";
+	// 	path = path.replace("@", "_");
+	// 	path = path.replace(".", "_");
 
-		var finder = new CKFinder({
-			startupPath : "Files:/" + path + "/images/"
-		});
-	} else {
-		var finder = new CKFinder();
-	}
+	// 	var finder = new CKFinder({
+	// 		startupPath : "Files:/" + path + "/images/"
+	// 	});
+	// } else {
+	// 	var finder = new CKFinder();
+	// }
+	
+	var finder = new CKFinder();
+
 	// The path for the installation of CKFinder (default = "/ckfinder/").
-	finder.basePath = '__ROOT__/ckfinder/';
+	finder.basePath = '__ROOT__/Ckfinder/';
 	// The default height is 400.
 	finder.height = 600;
 	// This is a sample function which is called when a file is selected in CKFinder.

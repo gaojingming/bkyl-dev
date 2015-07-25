@@ -74,4 +74,42 @@ class ArticleController extends BackendController {
 				echo json_encode($data);
 		}
 	}
+
+	public function article_add() {
+		if (!IS_POST)
+			$this->error();
+
+		$db_instance = new \Home\Model\ArticleModel();
+		$data['category_id'] = I('post.category_id');
+		if (empty($data['category_id'])) {
+			header_json_message(406, 'category_id不能为空');
+			return;
+		}
+
+		$data['title'] = I('post.title');
+		if (empty($data['title'])) {
+			header_json_message(406, 'title不能为空');
+			return;
+		}
+
+		$data['content'] = I('post.content', '', false);
+		if (empty($data['content'])) {
+			header_json_message(406, 'content不能为空');
+			return;
+		}
+
+		$data['modify_time'] = date('y-m-d H:i:s', time());
+		$data['author_id'] = session('admin_id');
+
+		if (I('post.istop') != '') {
+			$data['istop'] = I('post.istop') == 'true' ? 1 : 0;
+		}
+
+		// 添加数据
+		if ($db_instance->addNewArticle($data)) {
+			header_json_message(200, 'success');
+		} else {
+			header_json_message(200, $db_instance->getError());
+		}
+	}
 }

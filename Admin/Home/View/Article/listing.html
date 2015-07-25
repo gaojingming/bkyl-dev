@@ -100,7 +100,9 @@
           }
         }],
         'initComplete': function() {
-          $('#article_list_wrapper .pull-left').after('<a class="pull-right btn btn-success btn-sm" href="#"><i class="fa fa-plus"></i>&nbsp;添加文章</a>');
+          var category_id = $('#category_select').val();
+          var html = '<a class="pull-right btn btn-success btn-sm" href="{:U(\'Article/add\')}'+'&category_id='+category_id+'"><i class="fa fa-plus"></i>&nbsp;添加文章</a>';
+          $('#article_list_wrapper .pull-left').after(html);
         },
         'drawCallback': function() {
         }
@@ -120,6 +122,11 @@
           $('#category_select').change(function() {
             datatableChange($('#category_select').val());
           });
+
+          if ($_GET['category_id'] != '') {
+            $('option[value=' + $_GET['category_id'] + ']').attr('selected', 'selected');
+            datatableChange($('#category_select').val());
+          }
         },
         error: function(error) {
           console.log(error);

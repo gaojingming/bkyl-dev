@@ -1,6 +1,8 @@
 a{cursor:pointer}
+input{outline:none!important}
 .max-wd-300 td{max-width:300px}
 .unavailable{color:#aaa;cursor:not-allowed}
 .unavailable:hover{color:#aaa}
 .login-page{background:url('../images/login_bg.jpg') center no-repeat;background-color:#444}
 .login-logo a{color:#fefefe;font-size:40px}
+.error-tip{position:absolute;top:10px;left:1%;width:98%;height:50px;background:#ff6a6a;font-size:26px;line-height:50px;text-align:center;color:#fff;z-index:1000}
