@@ -8,4 +8,9 @@ return array(
 
 	// 伪静态
 	'URL_HTML_SUFFIX' => 'html',
+
+	// 模板解析字符串
+	'TMPL_PARSE_STRING'  => array(
+		'__PUBLIC__'     => __ROOT__ . '/Public',
+	),
 );

@@ -1,0 +1,67 @@
+h1,h2,h3,h4,h5,h6{font-family:'Microsoft YaHei'; font-weight:500;}
+h5{font-size:18px;}
+h6{font-size:16px;}
+.w100{width:100px;}
+.w160{width:160px;}
+.fl{float:left;}
+.fr{float:right;}
+.gray-9{color:#999;}
+.bdr-1-blue{border:1px solid #b0d7ff;}
+.date-24-time{line-height:22px; font-size:12px; font-family:arial;}
+.banner-470-60{width:470px; height:60px; margin-left:8px; margin-top:1px;}
+.banner-315-60{width:315px; height:60px; margin-left:5px;}
+.banner-1000-70{width:1000px; height:70px; display:inline-block;}
+.side-banner-80{height:80px; margin-top:10px;}
+.side-banner-500{height:500px; margin-top:10px;}
+.container{width:1000px; margin:0 auto;}
+.header{width:100%; height:30px; background-color:#f1f1f1;}
+.header .tags{line-height:30px; display:inline-block;}
+.top-container{height:60px; padding:10px 0;}
+.top-container .logo{width:200px; height:60px; display:inline-block;}
+.nav-bar{margin-bottom:10px;}
+.nav-bar ul{display:block; background:#2b6bab; list-style-type:none;}
+.nav-bar li{float:left; width:111px; text-align:center;}
+.nav-bar li:hover{background:#255c94;}
+.nav-bar li a{line-height:40px; color:#fff; font-size:16px; font-family:'Microsoft YaHei';}
+.slider{width:700px; height:340px; overflow:hidden; position:relative;}
+.slider .num{position:absolute; right:5px; bottom:5px; z-index:1000;}
+.slider .num li{float:left; color:#ff7300; text-align:center; line-height:16px; width:16px; height:16px; cursor:pointer; overflow:hidden; margin:3px 1px; border:1px solid #ff7300; background-color:#fff;}
+.slider .num li.on{color:#fff; line-height:21px; width:21px; height:21px; font-size:16px; margin:0 1px; border:0; background-color:#ff3000; font-weight:bold;}
+.tab-title{line-height:34px; padding:5px 15px 0 15px;}
+.tab-line{width:130px; height:3px; background-color:#2b6bab; margin-top:-1px;}
+.tab-container img{width:150px; height:150px; margin-left:10px;}
+.news-tab{border:1px solid #ddd; border-top:2px solid #369; width:290px; height:395px; float:right;}
+.news-tab .tab-content{margin:0px 10px;}
+.tab-content a{display:block; border-bottom:1px solid #e5e4e4; margin-top:8px;}
+.news-tab p{padding:6px 0; font-size:14px; height:44px; font-family:'Microsoft YaHei';}
+.news-tab .txt{color:#8c8c8c; line-height:22px; text-align:left;}
+.col-2-tab{width:495px; height:200px; margin-top:15px; border:1px solid #eee;}
+.col-2-tab .tab-article-con{height:200px; width:320px; margin-top:-39px;}
+.tab-article-con .tab-article{margin-top: 35px;}
+.col-2-tab .tab-more{float:right; margin-top:12px; margin-right:12px; font-family:'Microsoft YaHei'; font-size:14px; cursor:pointer;}
+.tab-article h6{font-family: '宋体'; background:url('../img/gray-circle.png') no-repeat 0 6px; padding-left:18px; margin-top:12px; margin-right:18px; border-bottom:1px solid #dddddd; padding-bottom:3px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; /* for IE */ -o-text-overflow: ellipsis; /* for Opera */ -icab-text-overflow: ellipsis; /* for iCab */ -khtml-text-overflow: ellipsis; /* for Konqueror Safari */ -moz-text-overflow: ellipsis; /* for Firefox,mozilla */ -webkit-text-overflow: ellipsis; /* for Safari,Swift*/ }
+.medicine-guide{width:998px; border:1px solid #eee; border-top:3px solid #2b6bab; padding-bottom:10px; margin-top:10px;}
+.medicine-container{width:332px; background-color:#fff; margin-top: 10px;}
+.medicine-letter{margin-left:14px; display:inline-block; font-size:16px; color:#c20505; vertical-align:top; line-height:24px; float:left;}
+.medicine-list{display:inline-block; width:300px; margin-left:3px}
+.medicine-list li{line-height:24px; float:left; margin-left:5px;}
+.left-content{width:300px;}
+.main-content{width:660px; margin-top:15px; padding-left:10px; padding-right:10px;}
+.main-content .breadcrumb-nav{padding-bottom: 15px;}
+.main-content .breadcrumb-nav li{float:left; font-size:14px; padding-right:5px;}
+.breadcrumb-nav li a{color:#0000bf; text-decoration:underline;}
+.article-list li{width:100%; padding: 10px 10px; font-size:14px; font-family:'Microsoft YaHei'; border-bottom:1px dashed #ddd;}
+.article-list li a{float:left; color:#000; line-height:16px; width:500px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; /* for IE */ -o-text-overflow: ellipsis; /* for Opera */ -icab-text-overflow: ellipsis; /* for iCab */ -khtml-text-overflow: ellipsis; /* for Konqueror Safari */ -moz-text-overflow: ellipsis; /* for Firefox,mozilla */ -webkit-text-overflow: ellipsis; /* for Safari,Swift*/;}
+.article-list .list-datetime{color:#777; font-size:14px;}
+.rank-tab{margin-top:15px;border:1px solid #ddd; border-top:2px solid #b6262f;}
+.rank-tab h5{padding-top:10px; padding-left:15px}
+.rank-tab ul{padding-top:10px; padding-left:10px; font-family:'Microsoft YaHei'; padding-right:10px; padding-bottom:10px}
+.rank-tab ul li{font-size:14px;overflow:hidden; white-space:nowrap; color:#595959; padding-top:10px; padding-bottom:10px; text-overflow:ellipsis; /* for IE */ -o-text-overflow: ellipsis; /* for Opera */ -icab-text-overflow: ellipsis; /* for iCab */ -khtml-text-overflow: ellipsis; /* for Konqueror Safari */ -moz-text-overflow: ellipsis; /* for Firefox,mozilla */ -webkit-text-overflow: ellipsis; /* for Safari,Swift*/;}
+.article-pagination{padding:10px 5px;}
+.article-pagination a{margin-left:5px;}
+.article-pagination .current{margin-left:5px; font-weight:bold;}
+.article{font-size:12px}
+.article > h1{font-weight:bold; width:100%; text-align:center; margin:20px auto}
+.article .datetime{display:inline-block; margin-left:500px; color:#999;}
+.article .article-content {margin:10px 20px;}
+.footer{margin-top:35px;}

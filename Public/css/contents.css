@@ -1,0 +1,175 @@
+/*
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+
+.article-content
+{
+	/* Font */
+	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+	font-size: 14px;
+
+	/* Text color */
+	color: #333;
+
+	/* Remove the background color to make it transparent */
+	background-color: #fff;
+}
+
+.article-content p
+{
+	line-height:150%;
+	margin: 1em 0;
+}
+
+.article-content .cke_editable
+{
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.article-content > blockquote
+{
+	font-style: italic;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	padding: 2px 0 2px 20px;
+	border-left: 5px solid #ccc;
+}
+
+.article-content > blockquote > p
+{
+	text-indent: 0em;
+}
+
+.article-content > .cke_contents_ltr > blockquote
+{
+	padding-left: 20px;
+	padding-right: 8px;
+	border-left-width: 5px;
+}
+
+.article-content > .cke_contents_rtl > blockquote
+{
+	padding-left: 8px;
+	padding-right: 20px;
+	border-right-width: 5px;
+}
+
+.article-content a
+{
+	color: #0782C1;
+}
+
+.article-content > ol
+{
+	/* IE7: reset rtl list margin. (#7334) */
+	*margin-right: 0px;
+	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+	padding: 0 40px;
+}
+
+.article-content > ul
+{
+	/* IE7: reset rtl list margin. (#7334) */
+	*margin-right: 0px;
+	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+	padding: 0 40px;
+}
+
+.article-content > dl
+{
+	/* IE7: reset rtl list margin. (#7334) */
+	*margin-right: 0px;
+	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+	padding: 0 40px;
+}
+
+.article-content > h1
+{
+	margin: 0.67em 0;
+}
+.article-content > h2
+{
+	margin: 0.83em 0;
+}
+.article-content > h3
+{
+	margin: 1em 0;
+}
+.article-content > h1,
+.article-content > h2,
+.article-content > h3,
+.article-content > h4,
+.article-content > h5,
+.article-content > h6
+{
+	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+	font-weight: normal;
+	line-height: 1.2;
+}
+
+.article-content > hr
+{
+	border: 0px;
+	border-top: 1px solid #ccc;
+}
+
+.article-content img.right
+{
+	border: 1px solid #ccc;
+	float: right;
+	margin-left: 15px;
+	padding: 5px;
+}
+
+.article-content img.left
+{
+	border: 1px solid #ccc;
+	float: left;
+	margin-right: 15px;
+	padding: 5px;
+}
+
+.article-content pre
+{
+	white-space: pre-wrap; /* CSS 2.1 */
+	word-wrap: break-word; /* IE7 */
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	-webkit-tab-size: 4;
+	tab-size: 4;
+}
+
+.article-content .marker
+{
+	background-color: Yellow;
+}
+
+.article-content span[lang]
+{
+	font-style: italic;
+}
+
+.article-content figure
+{
+	text-align: center;
+	border: solid 1px #ccc;
+	border-radius: 2px;
+	background: rgba(0,0,0,0.05);
+	padding: 10px;
+	margin: 10px 20px;
+	display: inline-block;
+}
+
+.article-content figure > figcaption
+{
+	text-align: center;
+	display: block; /* For IE8 */
+}
+
+.article-content a > img {
+	padding: 1px;
+	margin: 1px;
+	border: none;
+	outline: 1px solid #0782C1;
+}

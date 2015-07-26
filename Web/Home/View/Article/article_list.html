@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-cn">
+<head>
+	<include file="./Public/common_tpl/head.html" />
+</head>
+<body>
+	<include file="./Public/common_tpl/header.html" />
+
+	<div class="container clearfix">
+
+		<include file="./Public/common_tpl/content_header.html" />
+	
+		<div class="left-content fl">
+			<div class="rank-tab">
+				<h5>总阅读排行榜</h5>
+				<ul>
+					<foreach name="rank" item="v">
+						<li><a href="{:U('Article/article/id/'.$v['id'])}">{$v['title']}</a></li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="side-banner-80">
+				<img src="__PUBLIC__/img/banner-300-80.jpg">
+			</div>
+			<div class="side-banner-500">
+				<img src="__PUBLIC__/img/banner-300-500.jpg">
+			</div>
+		</div>
+
+		<div class="main-content fl">
+			<ul class="breadcrumb-nav">
+				<li><a href="{:U('Index/index')}">首页</a>></li>
+				<li><a href="#">{$category}</a></li>>
+			</ul>
+			<ul class="article-list">
+				<foreach name="article_list" item="v">
+					<li class="clearfix"><a href="{:U('Article/article/id/'.$v['id'])}">{$v['title']}</a><span class="list-datetime fr">{$v['modify_time']}</span></li>
+				</foreach>
+			</ul>
+			{$page}
+		</div>
+	</div>
+
+	<include file="./Public/common_tpl/footer.html" />
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-cn">
+<head>
+	<include file="./Public/common_tpl/head.html" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/contents.css">
+</head>
+<body>
+	<include file="./Public/common_tpl/header.html" />
+
+	<div class="container clearfix">
+
+		<include file="./Public/common_tpl/content_header.html" />
+	
+		<div class="left-content fl">
+			<div class="rank-tab">
+				<h5>总阅读排行榜</h5>
+				<ul>
+					<foreach name="rank" item="v">
+						<li><a href="{:U('Article/article/id/'.$v['id'])}">{$v['title']}</a></li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="side-banner-80">
+				<img src="__PUBLIC__/img/banner-300-80.jpg">
+			</div>
+			<div class="side-banner-500">
+				<img src="__PUBLIC__/img/banner-300-500.jpg">
+			</div>
+		</div>
+
+		<div class="main-content fl">
+			<div class="article">
+				<h1>{$article_data['title']}</h1>
+				<span class="datetime">{$article_data['modify_time']}</span>
+				<div class="article-content">
+					{$article_data['content']}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<include file="./Public/common_tpl/footer.html" />
+
+	<script type="text/javascript" src="__PUBLIC__/js/styles.js"></script>
+</body>
+</html>
