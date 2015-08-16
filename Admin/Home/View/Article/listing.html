@@ -94,7 +94,7 @@
           'width': '15%',
           'data': function(row, type, val, meta) {
             var html = '';
-            html += '<a class="article_update href="#">[修改]</a>&nbsp;&nbsp;';
+            html += '<a class="article_update" href="{:U(\'Article/update\')}'+'&id=' + row[0] + '">[修改]</a>&nbsp;&nbsp;';
             html += '<a class="article_delete href="#">[删除]</a>';
             return html;
           }

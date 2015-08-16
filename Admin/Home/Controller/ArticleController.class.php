@@ -49,6 +49,25 @@ class ArticleController extends BackendController {
 	}
 
 	/**
+	 * 修改文章页面
+	 */
+	public function update() {
+		$id = I('get.id');
+		if (empty($id)) {
+			$this->error();
+		}
+		$db_instance = new \Home\Model\ArticleModel();
+		
+		$data = $db_instance->get_article($id);
+		if (empty($data)) {
+			$this->error();
+		}
+
+		$this->assign('data', $data[0]);
+		$this->display();
+	}
+
+	/**
 	 * 获取文章列表AJAX访问地址
 	 * @return json_string 文章列表
 	 */
@@ -107,6 +126,51 @@ class ArticleController extends BackendController {
 
 		// 添加数据
 		if ($db_instance->addNewArticle($data)) {
+			header_json_message(200, 'success');
+		} else {
+			header_json_message(200, $db_instance->getError());
+		}
+	}
+
+	public function article_update() {
+		if (!IS_POST) {
+			$this->error();
+		}
+
+		$db_instance = new \Home\Model\ArticleModel();
+		$data['id'] = I('post.id');
+		if (empty($data['id'])) {
+			header_json_message(406, 'id不能为空');
+			return;
+		}
+
+		$data['category_id'] = I('post.category_id');
+		if (empty($data['category_id'])) {
+			header_json_message(406, 'category_id不能为空');
+			return;
+		}
+
+		$data['title'] = I('post.title');
+		if (empty($data['title'])) {
+			header_json_message(406, 'title不能为空');
+			return;
+		}
+
+		$data['content'] = I('post.content', '', false);
+		if (empty($data['content'])) {
+			header_json_message(406, 'content不能为空');
+			return;
+		}
+
+		$data['modify_time'] = date('y-m-d H:i:s', time());
+		$data['author_id'] = session('admin_id');
+
+		if (I('post.istop') != '') {
+			$data['istop'] = I('post.istop') == 'true' ? 1 : 0;
+		}
+
+		// 添加数据
+		if ($db_instance->update_article($data)) {
 			header_json_message(200, 'success');
 		} else {
 			header_json_message(200, $db_instance->getError());

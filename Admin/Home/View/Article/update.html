@@ -1,0 +1,161 @@
+<extend name="Public:base" />
+
+<block name="css">
+  <!-- iCheck -->
+</block>
+
+<block name="content">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 class="font-yh">文章管理</h1>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title font-yh">修改文章</h3>
+              </div>
+              <div class="box-body">
+                <div class="row">
+                  <form id="category_change" action="" method="get">
+                    <div class="form-group col-md-3 col-xs-12">
+                      <label>选择分类</label>
+                      <select id="category_select" class="form-control" name="category_select">
+                        <option value="-1" style="display:none">请选择文章分类</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3 col-xs-12">
+                      <label>其他设置</label>
+                      <div class="checkbox" style="margin-top:6px";>
+                        <label>
+                          <input type="checkbox" name="istop">置顶
+                        </label>
+                      </div>
+                      <!-- <input type="radio" class="form-control">置顶 -->
+                    </div>
+                  </form>
+                  <!-- /category_change -->
+                </div>
+                <form id="article_add" action="{:U('Article/article_update')}" method="post">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>文章标题</label>
+                      <input class="form-control" type="text" name="article_title" value="{$data['title']}">
+                    </div>
+                  </div>
+                  <!-- /row -->
+                  <textarea id="editor" name="editor">{$data['content']}</textarea>
+                </form>
+              </div>
+              <!-- /box-body -->
+              <div class="box-footer">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary pull-right">保存</button>
+                  </div>
+                </div>
+              </div>
+              <!-- /box-footer -->
+          </div>
+          <!-- /box -->
+        </div>
+        <!-- /col -->
+      </div>
+    </section>
+    <!-- /content -->
+  </div><!-- /.content-wrapper -->
+</block>
+
+<block name="loadjs">
+  <include file="Public:set_sidebar" firstdir="文章管理" seconddir="添加新文章" />
+
+  <!-- ckeditor -->
+  <script type="text/javascript" src="__PUBLIC__/plugins/ckeditor/ckeditor.js"></script>
+
+  <!-- ckfinder -->
+  <script type="text/javascript" src="__ROOT__/Ckfinder/ckfinder.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() { 
+      $.ajax({
+        type: 'get',
+        url: "{:U('Category/get_category')}",
+        dataType: 'json',
+        success: function(data) {
+          for (var i = 0; i < data.length; ++ i) {
+            $('#category_select').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+          }
+
+          var category_id = {$data['category_id']};
+          if (category_id != undefined)
+            $('option[value=' + category_id + ']').attr('selected', 'selected');
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    });
+
+    var editor = CKEDITOR.replace('editor', {
+      height: '500'
+    });
+
+    CKFinder.setupCKEditor(editor, '__ROOT__/Ckfinder/');
+
+    function CKupdate() {
+      for (instance in CKEDITOR.instances)
+        CKEDITOR.instances[instance].updateElement();
+    }
+
+    $('.box-footer button[type=submit]').click(function() {
+      $('.has-error').removeClass('has-error');
+      $('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>').appendTo('.content-wrapper .box');
+
+      var category_id = $('#category_select').val();
+      if (category_id == -1) {
+        errorTipFadeIn('请选择文章分类');
+        $('#category_select').parent().addClass('has-error');
+        $('.overlay').remove();
+        return false;
+      }
+
+      var title = $('input[name=article_title]').val();
+      if (title == '') {
+        errorTipFadeIn('文章标题不能为空');
+        $('input[name=article_title]').parent().addClass('has-error');
+        $('.overlay').remove();
+        return false;
+      }
+
+      CKupdate();
+      $.ajax({
+        data: {
+          id: {$data['id']},
+          category_id: category_id,
+          title: title,
+          content: $('#editor').val(),
+          istop: $('input[name=istop]').is(':checked'),
+        },
+        type: 'post',
+        dataType: 'json',
+        url: $('#article_add').attr('action'),
+        success: function(data) {
+          if (data == 'success')
+            location.href = "{:U('Article/listing')}" + "&category_id=" + category_id;
+          else
+            errorTipFadeIn(data);
+        },
+        error: function(data) {
+          console.log(data);
+        }
+      });
+
+      $('.overlay').remove();
+      return false;
+    });
+  </script>
+</block>

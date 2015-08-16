@@ -24,6 +24,16 @@ class ArticleModel extends Model {
 	}
 
 	/**
+	 * 查询当前文章内容
+	 * @param  $id 文章id编号
+	 * @return array 文章相关信息
+	 */
+	public function get_article($id) {
+		$data = $this->where(array('id'=>$id))->select();
+		return $data;
+	}
+
+	/**
 	 * 添加新文章
 	 * @return  true or false
 	 */
@@ -31,6 +41,13 @@ class ArticleModel extends Model {
 		if (!$this->create($data))
 			return false;
 		$this->add($data);
+		return true;
+	}
+
+	public function update_article($data) {
+		if (!$this->create($data))
+			return false;
+		$this->save($data);
 		return true;
 	}
 }
