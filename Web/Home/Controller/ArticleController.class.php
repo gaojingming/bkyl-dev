@@ -14,14 +14,15 @@ class ArticleController extends CommonController {
     	$category_id = I('get.category_id');
         $category = M('category')->where(array('id'=>$category_id))->select()[0]['name'];
     	$db_article = M('article');
-    	$data = $db_article->where(array('category_id'=>$category_id))->field('id, title, modify_time')->order('modify_time DESC')->page($_GET['p'].', 25')->select();
-    	$this->assign('article_list', $data);
-    	$count = $db_article->count();
-    	$Page = new \Think\Page($count, 25);
-    	$show = $Page->show();
+
+        $count = $db_article->where(array('category_id'=>$category_id))->count();
+        $page = new \Think\Page($count, 25);
+        $show = $page->show();
+        $list = $db_article->where(array('category_id'=>$category_id))->field('id, title, modify_time')->order('modify_time DESC')->limit($page->firstRow.', '.$page->listRows)->select();
 
         $rank = $db_article->order('view_num DESC')->limit(10)->select();
 
+        $this->assign('article_list', $list);
         $this->assign('rank', $rank);
     	$this->assign('page', $show);
         $this->assign('category', $category);
