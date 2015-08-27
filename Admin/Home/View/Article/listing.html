@@ -14,6 +14,42 @@
 
     <section class="content">
       <div class="row">
+
+        <div class="col-xs-12">
+          <form class="modal fade" id="del_article_modal" action="{:U('Article/article_del')}">
+            <input type="hidden" name="article_id">
+              <div class="modal-dialog" style="width:450px; margin-top:13%">
+                <div class="box box-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title font-yh">删除文章</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /box-header -->
+                  <div class="box-body">
+                    <div class="row">
+                      <div class="col-xs-12" id="message">
+                        确定要删除文章：<b id="article_name"></b>&nbsp;&nbsp;吗？
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /box-body -->
+                  <div class="box-footer">
+                    <div class="row">
+                      <div class="col-xs-12 text-right">
+                        <button type="submit" class="btn btn-danger">确定</button>
+                        <button class="btn btn-default" data-dismiss="modal">取消</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </form>
+        </div>
+
         <div class="col-xs-12">
           <div class="box">
               <div class="box-header with-border">
@@ -95,7 +131,7 @@
           'data': function(row, type, val, meta) {
             var html = '';
             html += '<a class="article_update" href="{:U(\'Article/update\')}'+'&id=' + row[0] + '">[修改]</a>&nbsp;&nbsp;';
-            html += '<a class="article_delete href="#">[删除]</a>';
+            html += '<a class="article_del" href="#" data-toggle="modal" data-target="#del_article_modal">[删除]</a>';
             return html;
           }
         }],
@@ -105,6 +141,12 @@
           $('#article_list_wrapper .pull-left').after(html);
         },
         'drawCallback': function() {
+          $('.article_del[data-toggle=modal]').click(function() {
+            var title = $(this).parent().siblings('td:eq(1)').text();
+            var id = $(this).parent().siblings('td:eq(0)').text();
+            $('#del_article_modal #article_name').text(title);
+            $('#del_article_modal input[name=article_id]').val(id);
+          });
         }
       });
     }
@@ -131,6 +173,24 @@
         error: function(error) {
           console.log(error);
         }
+      });
+
+      $('#del_article_modal').submit(function() {
+        $.ajax({
+          data: $('#del_article_modal').serialize(),
+          type: 'post',
+          dataType: 'json',
+          url: $('#del_article_modal').attr('action'),
+          success: function(data) {
+
+          },
+          error: function(error) {
+            console.log('error');
+          }
+        });
+        var category_id = $('#category_select').val();
+        window.location.href = "{:U('Article/listing')}" + '&category_id=' + category_id;
+        return false;
       });
     });
   </script>

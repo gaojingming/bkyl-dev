@@ -50,4 +50,9 @@ class ArticleModel extends Model {
 		$this->save($data);
 		return true;
 	}
+
+	public function delete_article($data) {
+		$this->where(array('id'=>$data['id']))->delete();
+		return true;
+	}
 }

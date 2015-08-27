@@ -176,4 +176,24 @@ class ArticleController extends BackendController {
 			header_json_message(200, $db_instance->getError());
 		}
 	}
+
+	public function article_del() {
+		if (!IS_POST) {
+			$this->error();
+		}
+
+		$db_instance = new \Home\Model\ArticleModel();
+		$data = array();
+		$data['id'] = I('post.article_id');
+		if (empty($data['id'])) {
+			header_json_message(406, 'article_id不能为空');
+			return;
+		}
+
+		if ($db_instance->delete_article($data)) {
+			header_json_message(200, 'success');
+		} else {
+			header_json_message(406, $db_instance->getError());
+		}
+	}
 }
