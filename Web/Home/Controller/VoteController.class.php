@@ -8,6 +8,10 @@ class VoteController extends CommonController {
     }
 
     public function listing() {
-       $this->display();
+    	$this->display();
+    }
+
+    public function detail() {
+    	$this->display();
     }
 }

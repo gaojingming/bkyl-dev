@@ -23,7 +23,7 @@ h6{font-size:16px;}
 .nav-bar li{float:left; width:111px; text-align:center;}
 .nav-bar li:hover{background:#255c94;}
 .nav-bar li a{line-height:40px; color:#fff; font-size:16px; font-family:'Microsoft YaHei';}
-.slider{width:700px; height:340px; overflow:hidden; position:relative;}
+.slider{width:700px; height:400px; overflow:hidden; position:relative;}
 .slider .num{position:absolute; right:5px; bottom:5px; z-index:1000;}
 .slider .num li{float:left; color:#ff7300; text-align:center; line-height:16px; width:16px; height:16px; cursor:pointer; overflow:hidden; margin:3px 1px; border:1px solid #ff7300; background-color:#fff;}
 .slider .num li.on{color:#fff; line-height:21px; width:21px; height:21px; font-size:16px; margin:0 1px; border:0; background-color:#ff3000; font-weight:bold;}
