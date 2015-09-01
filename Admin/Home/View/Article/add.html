@@ -1,10 +1,11 @@
 <extend name="Public:base" />
 
 <block name="css">
-  <!-- iCheck -->
 </block>
 
 <block name="content">
+  <iframe id="ajax_response" name="ajax_response" style="display:none"></iframe>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -16,40 +17,41 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
+            <form id="article_add" method="post" action="{:U('Article/article_add')}" enctype="multipart/form-data" target="ajax_response">
               <div class="box-header with-border">
                 <h3 class="box-title font-yh">添加文章</h3>
               </div>
               <div class="box-body">
                 <div class="row">
-                  <form id="category_change" action="" method="get">
-                    <div class="form-group col-md-3 col-xs-12">
-                      <label>选择分类</label>
-                      <select id="category_select" class="form-control" name="category_select">
-                        <option value="-1" style="display:none">请选择文章分类</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-3 col-xs-12">
-                      <label>其他设置</label>
-                      <div class="checkbox" style="margin-top:6px";>
-                        <label>
-                          <input type="checkbox" name="istop">置顶
-                        </label>
-                      </div>
-                      <!-- <input type="radio" class="form-control">置顶 -->
-                    </div>
-                  </form>
-                  <!-- /category_change -->
-                </div>
-                <form id="article_add" action="{:U('Article/article_add')}" method="post">
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>文章标题</label>
-                      <input class="form-control" type="text" name="article_title">
+                  <div class="form-group col-md-3 col-xs-12">
+                    <label>选择分类</label>
+                    <select id="category_select" class="form-control" name="category_select">
+                      <option value="-1" style="display:none">请选择文章分类</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-3 col-xs-12">
+                    <label>其他设置</label>
+                    <div class="checkbox" style="margin-top:6px">
+                      <label><input type="checkbox" name="istop">置顶</label>
                     </div>
                   </div>
-                  <!-- /row -->
-                  <textarea id="editor" name="editor"></textarea>
-                </form>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>缩略图设置</label>
+                    <input name="thumbnail" type="file">
+                  </div>
+                  <div class="col-md-6">
+                    <img src="__ROOT__/Public/img/tab-news-no.jpg">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 col-xs-12">
+                    <label>文章标题</label>
+                    <input class="form-control" type="text" name="title">
+                  </div>
+                </div>
+                <textarea id="editor" name="content"></textarea>
               </div>
               <!-- /box-body -->
               <div class="box-footer">
@@ -60,14 +62,14 @@
                 </div>
               </div>
               <!-- /box-footer -->
+            </form>
           </div>
           <!-- /box -->
         </div>
-        <!-- /col -->
       </div>
+      <!-- /row -->
     </section>
-    <!-- /content -->
-  </div><!-- /.content-wrapper -->
+  </div>
 </block>
 
 <block name="loadjs">
@@ -80,10 +82,10 @@
   <script type="text/javascript" src="__ROOT__/Ckfinder/ckfinder.js"></script>
 
   <script type="text/javascript">
-    $(document).ready(function() { 
+    $(document).ready(function() {
       $.ajax({
         type: 'get',
-        url: "{:U('Category/get_category')}",
+        url: '{:U("Category/get_category")}',
         dataType: 'json',
         success: function(data) {
           for (var i = 0; i < data.length; ++ i) {
@@ -100,61 +102,28 @@
       });
     });
 
-    var editor = CKEDITOR.replace('editor', {
-      height: '500'
-    });
-
+    var editor = CKEDITOR.replace('editor', {height: '500'});
     CKFinder.setupCKEditor(editor, '__ROOT__/Ckfinder/');
-
     function CKupdate() {
       for (instance in CKEDITOR.instances)
         CKEDITOR.instances[instance].updateElement();
     }
 
-    $('.box-footer button[type=submit]').click(function() {
-      $('.has-error').removeClass('has-error');
-      $('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>').appendTo('.content-wrapper .box');
-
-      var category_id = $('#category_select').val();
-      if (category_id == -1) {
-        errorTipFadeIn('请选择文章分类');
-        $('#category_select').parent().addClass('has-error');
-        $('.overlay').remove();
-        return false;
-      }
-
-      var title = $('input[name=article_title]').val();
-      if (title == '') {
-        errorTipFadeIn('文章标题不能为空');
-        $('input[name=article_title]').parent().addClass('has-error');
-        $('.overlay').remove();
-        return false;
-      }
-
-      CKupdate();
-      $.ajax({
-        data: {
-          category_id: category_id,
-          title: title,
-          content: $('#editor').val(),
-          istop: $('input[name=istop]').is(':checked'),
-        },
-        type: 'post',
-        dataType: 'json',
-        url: $('#article_add').attr('action'),
-        success: function(data) {
-          if (data == 'success')
-            location.href = "{:U('Article/listing')}" + "&category_id=" + category_id;
-          else
-            errorTipFadeIn(data);
-        },
-        error: function(data) {
-          console.log(data);
-        }
-      });
-
-      $('.overlay').remove();
-      return false;
+    $('#article_add').submit(function() {
+      $('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>').appendTo('.box');
     });
+
+    $('#ajax_response').load(function() {
+      var info = $(document.getElementById('ajax_response').contentWindow.document.body).html();
+      $('.overlay').remove();
+      if (info == 'success') {
+        category_id = $('#category_select').val();
+        window.location.href = "{:U('Article/listing')}" + "&category_id=" + category_id;
+      } else {
+        errorTipFadeIn(info);
+      }
+    });
+
   </script>
+
 </block>

@@ -25,34 +25,19 @@
 		<div class="news-tab fr">
 			<h5 class="tab-title">公司新闻</h5>
 			<div class="tab-content">
-				<a class="clearfix" href="{:U('Article/article?id=31')}">
-					<div class="w100 fl"><img width="100" height="70" src="__PUBLIC__/img/tab-news-5.jpg"></div>
-					<div class="w160 fr txt">
-						<p>异常火爆的“一分钟诊所”究竟是如何运营的？</p>
-						<span class="gray-9 date-24-time">2015-08-23 20:49:58</span>
-					</div>
-				</a>
-				<a class="clearfix" href="{:U('Article/article?id=26')}">
-					<div class="w100 fl"><img width="100" height="70" src="__PUBLIC__/img/tab-news-2.jpg"></div>
-					<div class="w160 fr txt">
-						<p>华药健康驿站 名医帮扶工程活动简介</p>
-						<span class="gray-9 date-24-time">2015-06-26 08:50:59</span>
-					</div>
-				</a>
-				<a class="clearfix" href="{:U('Article/article?id=21')}">
-					<div class="w100 fl"><img width="100" height="70" src="__PUBLIC__/img/tab-news-3.jpg"></div>
-					<div class="w160 fr txt">
-						<p>中医研究院技术交流项目及课程安排</p>
-						<span class="gray-9 date-24-time">2015-06-26 08:51:04</span>
-					</div>
-				</a>
-				<a class="clearfix" href="{:U('Article/article?id=20')}">
-					<div class="w100 fl"><img width="100" height="70" src="__PUBLIC__/img/tab-news-4.jpg"></div>
-					<div class="w160 fr txt">
-						<p>基层医生三伏贴培训班正式开班</p>
-						<span class="gray-9 date-24-time">2015-06-26 08:50:59</span>
-					</div>
-				</a>
+				<for start="0" end="4">
+					<a class="clearfix" href="{:U('Article/article?id='.$news[$i]['id'])}" title="{$news[$i]['title']}">
+						<if condition="empty($news[$i]['thumbnail'])">
+							<div class="w100 fl"><img width="100" height="70" src="__PUBLIC__/img/tab-news-no.jpg"></div>
+						<else />
+							<div class="w100 fl"><img width="100" height="70" src="__ROOT__/Uploads/{$news[$i]['thumbnail']}"></div>
+						</if>
+						<div class="w160 fr txt">
+							<p>{$news[$i]['title']}</p>
+							<span class="gray-9 date-24-time">{$news[$i]['modify_time']}</span>
+						</div>
+					</a>
+				</for>
 			</div>
 		</div>
 	</div>

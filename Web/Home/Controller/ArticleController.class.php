@@ -18,7 +18,7 @@ class ArticleController extends CommonController {
         $count = $db_article->where(array('category_id'=>$category_id))->count();
         $page = new \Think\Page($count, 25);
         $show = $page->show();
-        $list = $db_article->where(array('category_id'=>$category_id))->field('id, title, modify_time')->order('modify_time DESC')->limit($page->firstRow.', '.$page->listRows)->select();
+        $list = $db_article->where(array('category_id'=>$category_id))->field('id, title, modify_time')->order('istop DESC, modify_time DESC')->limit($page->firstRow.', '.$page->listRows)->select();
 
         $rank = $db_article->order('view_num DESC')->limit(10)->select();
 

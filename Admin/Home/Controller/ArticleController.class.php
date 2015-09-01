@@ -81,7 +81,7 @@ class ArticleController extends BackendController {
 			$v = trim($v);
 		}
 
-		$data = M('article')->where(array('category_id'=>$category_id))->field('id, title, modify_time')->order('modify_time desc')->select();
+		$data = M('article')->where(array('category_id'=>$category_id))->field('id, title, istop, modify_time')->order('istop DESC, modify_time DESC')->select();
 
 		switch ($format) {
 			case 'datatables':
@@ -94,26 +94,30 @@ class ArticleController extends BackendController {
 		}
 	}
 
+	/**
+	 * 添加文章ajax提交地址
+	 */
 	public function article_add() {
 		if (!IS_POST)
 			$this->error();
 
 		$db_instance = new \Home\Model\ArticleModel();
-		$data['category_id'] = I('post.category_id');
+
+		$data['category_id'] = I('post.category_select');
 		if (empty($data['category_id'])) {
-			header_json_message(406, 'category_id不能为空');
+			header_message(406, '分类不能为空');
 			return;
 		}
 
 		$data['title'] = I('post.title');
 		if (empty($data['title'])) {
-			header_json_message(406, 'title不能为空');
+			header_message(406, '标题不能为空');
 			return;
 		}
 
 		$data['content'] = I('post.content', '', false);
 		if (empty($data['content'])) {
-			header_json_message(406, 'content不能为空');
+			header_message(406, '内容不能为空');
 			return;
 		}
 
@@ -121,14 +125,38 @@ class ArticleController extends BackendController {
 		$data['author_id'] = session('admin_id');
 
 		if (I('post.istop') != '') {
-			$data['istop'] = I('post.istop') == 'true' ? 1 : 0;
+			$data['istop'] = I('post.istop') == 'on' ? 1 : 0;
+		}
+
+		// 如果有上传文件
+		if (!empty($_FILES['thumbnail']['tmp_name'])) {
+			$upload_config = array(
+				'maxSize'  => 1048576,								// 文件大小不超过1MB
+				'rootPath' => './Uploads/',							// 文件上传根目录
+				'savePath' => '',									// 上传子目录
+				'mimes'    => array('image/jpeg', 'image/png'),		// 允许的MIME文件类型
+				'exts'     => array('jpg', 'png'),					// 允许的后缀名
+				'subName'  => false,								// 不适用子目录保存文件
+			);
+			$upload_ins = new \Think\Upload($upload_config);
+			// 上传banner图
+			$file_info = $upload_ins->upload();
+			if (!$file_info) {
+				header_message(406, $upload_ins->getError());
+				return;
+			}
+			// 剪裁图片为414px * 176px
+			$image = new \Think\Image();
+			$image->open('./Uploads/'.$file_info['thumbnail']['savename']);
+			$image->thumb(100, 70, \Think\Image::IMAGE_THUMB_FIXED)->save('./Uploads/'.$file_info['thumbnail']['savename']);
+			$data['thumbnail'] = $file_info['thumbnail']['savename'];
 		}
 
 		// 添加数据
 		if ($db_instance->addNewArticle($data)) {
-			header_json_message(200, 'success');
+			header_message(200, 'success');
 		} else {
-			header_json_message(200, $db_instance->getError());
+			header_message(200, $db_instance->getError());
 		}
 	}
 
@@ -140,25 +168,25 @@ class ArticleController extends BackendController {
 		$db_instance = new \Home\Model\ArticleModel();
 		$data['id'] = I('post.id');
 		if (empty($data['id'])) {
-			header_json_message(406, 'id不能为空');
+			header_message(406, 'id不能为空');
 			return;
 		}
 
-		$data['category_id'] = I('post.category_id');
+		$data['category_id'] = I('post.category_select');
 		if (empty($data['category_id'])) {
-			header_json_message(406, 'category_id不能为空');
+			header_message(406, '分类不能为空');
 			return;
 		}
 
 		$data['title'] = I('post.title');
 		if (empty($data['title'])) {
-			header_json_message(406, 'title不能为空');
+			header_message(406, '标题不能为空');
 			return;
 		}
 
 		$data['content'] = I('post.content', '', false);
 		if (empty($data['content'])) {
-			header_json_message(406, 'content不能为空');
+			header_json_message(406, '内容不能为空');
 			return;
 		}
 
@@ -166,14 +194,40 @@ class ArticleController extends BackendController {
 		$data['author_id'] = session('admin_id');
 
 		if (I('post.istop') != '') {
-			$data['istop'] = I('post.istop') == 'true' ? 1 : 0;
+			$data['istop'] = I('post.istop') == 'on' ? 1 : 0;
+		}
+
+		// 如果有上传文件
+		if (!empty($_FILES['thumbnail']['tmp_name'])) {
+			$upload_config = array(
+				'maxSize'  => 1048576,								// 文件大小不超过1MB
+				'rootPath' => './Uploads/',							// 文件上传根目录
+				'savePath' => '',									// 上传子目录
+				'mimes'    => array('image/jpeg', 'image/png'),		// 允许的MIME文件类型
+				'exts'     => array('jpg', 'png'),					// 允许的后缀名
+				'subName'  => false,								// 不适用子目录保存文件
+			);
+			$upload_ins = new \Think\Upload($upload_config);
+			// 上传banner图
+			$file_info = $upload_ins->upload();
+			if (!$file_info) {
+				header_message(406, $upload_ins->getError());
+				return;
+			}
+			// 剪裁图片为414px * 176px
+			$image = new \Think\Image();
+			$image->open('./Uploads/'.$file_info['thumbnail']['savename']);
+			$image->thumb(100, 70, \Think\Image::IMAGE_THUMB_FIXED)->save('./Uploads/'.$file_info['thumbnail']['savename']);
+			$old_img = M('article')->where(array('id'=>$data['id']))->field('thumbnail')->select()[0];
+			@unlink('./Uploads/55e53ec125f5b.jpg');
+			$data['thumbnail'] = $file_info['thumbnail']['savename'];
 		}
 
 		// 添加数据
 		if ($db_instance->update_article($data)) {
-			header_json_message(200, 'success');
+			header_message(200, 'success');
 		} else {
-			header_json_message(200, $db_instance->getError());
+			header_message(200, $db_instance->getError());
 		}
 	}
 

@@ -64,4 +64,4 @@ h6{font-size:16px;}
 .article > h1{font-weight:bold; width:100%; text-align:center; margin:20px auto}
 .article .datetime{display:inline-block; margin-left:500px; color:#999;}
 .article .article-content {margin:10px 20px;}
-.footer{margin-top:35px;}
+.footer{margin-top:35px; border-top:1px solid #ddd;}
